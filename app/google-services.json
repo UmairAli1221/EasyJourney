@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "949992870654",
+    "firebase_url": "https://easyjourney-5caba.firebaseio.com",
+    "project_id": "easyjourney-5caba",
+    "storage_bucket": "easyjourney-5caba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949992870654:android:84fa66de91c8e098",
+        "android_client_info": {
+          "package_name": "com.example.umairali.easyjourney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949992870654-9e29cnkc11k3srm9qjasovd2v21e4jos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.umairali.easyjourney",
+            "certificate_hash": "75F256FB20BA45D236555DB973054A897A86B840"
+          }
+        },
+        {
+          "client_id": "949992870654-dfn288ha5bd001ssnetkfu5242hbrjd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa8OiTt3veIbLzre_R7ofjweHIDaOPiEA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949992870654-dfn288ha5bd001ssnetkfu5242hbrjd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

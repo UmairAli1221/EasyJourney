@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.umairali.easyjourney.SignUp">
+
+    <Button
+        android:text="Owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        android:id="@+id/ownerButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="39dp"
+        android:onClick="Ownersignup"/>
+
+    <Button
+        android:text="Traveller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/travellerButton"
+        android:layout_marginEnd="48dp"
+        android:layout_alignBaseline="@+id/ownerButton"
+        android:layout_alignBottom="@+id/ownerButton"
+        android:layout_alignParentEnd="true"
+        android:onClick="Travellersignup"/>
+</RelativeLayout>
