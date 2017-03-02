@@ -45,8 +45,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
         } else {
             mUserId = mFirebaseUser.getUid();
+            mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users").child(mUserId);
             GeoFire geoFire = new GeoFire(mDatabaseUsers);
-            geoFire.getLocation(mUserId, new com.firebase.geofire.LocationCallback() {
+            geoFire.getLocation("Locations", new com.firebase.geofire.LocationCallback() {
                 @Override
                 public void onLocationResult(String key, GeoLocation location) {
                     if (location != null) {

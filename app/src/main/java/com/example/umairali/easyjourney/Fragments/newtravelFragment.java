@@ -55,13 +55,14 @@ public class newtravelFragment extends Fragment {
         mAuth=FirebaseAuth.getInstance();
         mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseUsers.keepSynced(true);
-        final GeoFire geoFire=new GeoFire(mDatabaseUsers);
         mFirebaseUser = mAuth.getCurrentUser();
         if (mFirebaseUser == null) {
             Intent intent=new Intent(context, Login.class);
             startActivity(intent);
         } else {
             mUserId = mFirebaseUser.getUid();
+            mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users").child(mUserId);
+            final GeoFire geoFire=new GeoFire(mDatabaseUsers);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,7 +76,7 @@ public class newtravelFragment extends Fragment {
                         Address address = (Address) addressList.get(0);
                         lt = String.valueOf(address.getLatitude());
                         lg = String.valueOf(address.getLongitude());
-                        geoFire.setLocation(mUserId, new GeoLocation(address.getLatitude(), address.getLongitude())
+                        geoFire.setLocation("Locations", new GeoLocation(address.getLatitude(), address.getLongitude())
                                 , new GeoFire.CompletionListener() {
                                     @Override
                                     public void onComplete(String key, DatabaseError error) {
