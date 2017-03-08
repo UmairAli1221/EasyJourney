@@ -50,7 +50,6 @@ public class newtravelFragment extends Fragment {
         context = myView.getContext();
         time=(EditText)myView.findViewById(R.id.time);
         date=(EditText)myView.findViewById(R.id.date);
-        EndPoint=(EditText)myView.findViewById(R.id.epoint);
         btn = (Button) myView.findViewById(R.id.searchbtn);
         mAuth=FirebaseAuth.getInstance();
         mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users");
@@ -61,41 +60,73 @@ public class newtravelFragment extends Fragment {
             startActivity(intent);
         } else {
             mUserId = mFirebaseUser.getUid();
-            mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users").child(mUserId);
-            final GeoFire geoFire=new GeoFire(mDatabaseUsers);
         btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Startpoint = (EditText) myView.findViewById(R.id.spoint);
-                final String Startaddress = Startpoint.getText().toString();
-                Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-                try {
-                    List addressList = geocoder.getFromLocationName(Startaddress, 1);
-                    if (addressList != null && addressList.size() > 0) {
-                        Address address = (Address) addressList.get(0);
-                        lt = String.valueOf(address.getLatitude());
-                        lg = String.valueOf(address.getLongitude());
-                        geoFire.setLocation("Locations", new GeoLocation(address.getLatitude(), address.getLongitude())
-                                , new GeoFire.CompletionListener() {
-                                    @Override
-                                    public void onComplete(String key, DatabaseError error) {
-                                        if (error != null) {
-                                            Toast.makeText(context, "There was an error saving the location to GeoFire: ", Toast.LENGTH_LONG).show();
-                                        } else {
-                                            Intent i = new Intent(context, MapsActivity.class);
-                                            startActivity(i);
-                                            Toast.makeText(context, "\"Location saved on server successfully!\"", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                startPoint();
             }
         });
         }
         return myView;
+    }
+    private void startPoint() {
+        Startpoint = (EditText) myView.findViewById(R.id.spoint);
+        final String Startaddress = Startpoint.getText().toString();
+        mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users").child("StartPoint");
+        final GeoFire geoFire=new GeoFire(mDatabaseUsers);
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        try {
+            List addressList = geocoder.getFromLocationName(Startaddress, 1);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = (Address) addressList.get(0);
+                lt = String.valueOf(address.getLatitude());
+                lg = String.valueOf(address.getLongitude());
+                geoFire.setLocation(mUserId, new GeoLocation(address.getLatitude(), address.getLongitude())
+                        , new GeoFire.CompletionListener() {
+                            @Override
+                            public void onComplete(String key, DatabaseError error) {
+                                if (error != null) {
+                                    Toast.makeText(context, "There was an error saving the location to GeoFire: ", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "\"Origine saved on server successfully!\"", Toast.LENGTH_LONG).show();
+                                    endPoint();
+                                }
+                            }
+                        });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }private void endPoint() {
+        EndPoint=(EditText)myView.findViewById(R.id.endpoint);
+        final String Destinationaddress = EndPoint.getText().toString();
+        mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users").child("Destination");
+        final GeoFire geoFire2=new GeoFire(mDatabaseUsers);
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+        try {
+            List addressList = geocoder.getFromLocationName(Destinationaddress, 1);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = (Address) addressList.get(0);
+                lt = String.valueOf(address.getLatitude());
+                lg = String.valueOf(address.getLongitude());
+                geoFire2.setLocation(mUserId, new GeoLocation(address.getLatitude(), address.getLongitude())
+                        , new GeoFire.CompletionListener() {
+                            @Override
+                            public void onComplete(String key, DatabaseError error) {
+                                if (error != null) {
+                                    Toast.makeText(context, "There was an error saving the location to GeoFire: ", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "\"Destnation saved on server successfully!\"", Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(context, MapsActivity.class);
+                                    startActivity(i);
+
+                                }
+                            }
+                        });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

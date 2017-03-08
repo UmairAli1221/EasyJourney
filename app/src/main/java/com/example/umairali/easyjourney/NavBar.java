@@ -94,6 +94,10 @@ public class NavBar extends AppCompatActivity
 
             logout();
         }
+        if(id==R.id.action_logout){
+
+            startActivity(new Intent(NavBar.this,MapsActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }

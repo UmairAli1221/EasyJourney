@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Destination"
                 android:textAlignment="viewStart"
-            android:id="@+id/epoint" />
+            android:id="@+id/endpoint" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
