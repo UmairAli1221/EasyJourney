@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:id="@+id/firstname"
+                android:id="@+id/firstnameAccount"
                 android:textStyle="normal|bold"
                 android:textSize="24sp"
                 android:textAlignment="viewStart"
@@ -36,14 +36,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/lastname"
+                android:id="@+id/lastnameAccount"
                 android:textStyle="normal|bold"
                 android:textSize="16sp"
                 android:textAlignment="viewStart" />
         </LinearLayout>
     </LinearLayout>
         <TextView
-            android:text="    I travel to see my friends and family most weekends,and love having fun people to share the journey with."
+            android:text=" I travel to see my friends and family most weekends,and love having fun people to share the journey with."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="normal|bold"
@@ -51,18 +51,79 @@
             android:textAlignment="viewStart"/>
 
         <TextView
-            android:text=" Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView11"
+            android:id="@+id/profile"
             android:textSize="16sp"
             android:textStyle="normal|bold"
             android:textColor="@color/colorPrimary"
             android:textAlignment="center" />
-        <ListView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/myList"></ListView>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/genderAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/DOBAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addressAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cnicAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/licenceAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Vehical_RegAccount"
+                android:textStyle="normal|bold"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

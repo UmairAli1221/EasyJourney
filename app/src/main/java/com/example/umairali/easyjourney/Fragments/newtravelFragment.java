@@ -89,7 +89,6 @@ public class newtravelFragment extends Fragment {
                                 if (error != null) {
                                     Toast.makeText(context, "There was an error saving the location to GeoFire: ", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(context, "\"Origine saved on server successfully!\"", Toast.LENGTH_LONG).show();
                                     endPoint();
                                 }
                             }
@@ -117,7 +116,6 @@ public class newtravelFragment extends Fragment {
                                 if (error != null) {
                                     Toast.makeText(context, "There was an error saving the location to GeoFire: ", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(context, "\"Destnation saved on server successfully!\"", Toast.LENGTH_LONG).show();
                                     Intent i = new Intent(context, MapsActivity.class);
                                     startActivity(i);
 
