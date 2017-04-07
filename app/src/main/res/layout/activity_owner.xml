@@ -111,11 +111,12 @@
                     android:textSize="18sp"
                     android:layout_weight="1" />
 
-                <EditText
+                <TextView
                     android:layout_width="178dp"
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:ems="10"
+                    android:onClick="setDateB"
                     android:id="@+id/dateofbirthinput"
                     android:hint="DD/MM/YYYY" />
             </LinearLayout>

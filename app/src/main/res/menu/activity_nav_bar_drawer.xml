@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_menu_camera"
-            android:title="My Account" />
+            android:title="My Account"/>
         <item
             android:id="@+id/nav_new_Travell"
             android:icon="@drawable/ic_menu_gallery"

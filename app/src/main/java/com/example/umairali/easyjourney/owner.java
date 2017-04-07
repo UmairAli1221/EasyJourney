@@ -1,5 +1,7 @@
 package com.example.umairali.easyjourney;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -21,11 +24,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class owner extends AppCompatActivity {
     Button btn;
-    EditText firstname,lastname,Email,password,retype_password,phone,cnic,licence_number,registration_number,address,dateofbirth;
+    EditText firstname,lastname,Email,password,retype_password,phone,cnic,licence_number,registration_number,address;
+    TextView dateofbirth;
     RadioButton Malegender,FeMalegender;
     TextView Gender;
+    private Calendar calendar;
+    private int year, month, day;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private String mUserId;
@@ -36,6 +44,10 @@ public class owner extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
         firstname=(EditText)findViewById(R.id.firstnamebtn);
         lastname=(EditText)findViewById(R.id.lastnamebtn);
         Email=(EditText)findViewById(R.id.emailbtn);
@@ -44,7 +56,8 @@ public class owner extends AppCompatActivity {
         Gender=(TextView)findViewById(R.id.genderText);
         Malegender=(RadioButton)findViewById(R.id.malebtn);
         FeMalegender=(RadioButton)findViewById(R.id.femalebtn);
-        dateofbirth=(EditText)findViewById(R.id.dateofbirthinput);
+        dateofbirth=(TextView) findViewById(R.id.dateofbirthinput);
+        showDateOfBirth(year, month+1, day);
         phone=(EditText)findViewById(R.id.phoneInput);
         cnic=(EditText)findViewById(R.id.cnicinput);
         licence_number=(EditText)findViewById(R.id.licenceinput);
@@ -136,13 +149,6 @@ public class owner extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
                     });
-                    /*boolean result=databaseHelper.insertData(firstName,lastName,email,Password,Gender,Dateofbirth,Phone,Cnic,Licence,Registration,Address);
-                    if(result){
-                        Toast.makeText(owner.this," inserted", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(owner.this,ProfileImage.class));
-                    }else {
-                        Toast.makeText(owner.this,"Not inserted", Toast.LENGTH_LONG).show();
-                    }*/
                 }
 
             }
@@ -170,6 +176,31 @@ public class owner extends AppCompatActivity {
                     Gender.setText("Female");
                 break;
         }
+    }
+    @SuppressWarnings("deprecation")
+    public void setDateB(View view) {
+        showDialog(999);
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 999) {
+            DatePickerDialog dialog=new DatePickerDialog(this,myDateListener, year, month, day);
+            return dialog;
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+            showDateOfBirth(arg1, arg2+1, arg3);
+        }
+    };
+
+    private void showDateOfBirth(int year, int month, int day) {dateofbirth.setText(new StringBuilder().append(day).append("/")
+            .append(month).append("/").append(year));
     }
 
 }

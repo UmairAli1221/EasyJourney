@@ -65,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
         } else {
             getLocation();
+            destination();
         }
     }
     private void getLocation(){
@@ -101,22 +102,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         startActivity(intent1);
                                     }
                                 });
-                            destination(key);
+
                         }
                         @Override
                         public void onKeyExited(String key) {
                             Marker marker = markers.get(key);
-                            Marker marker1=markers1.get(key);
                             if (marker != null) {
                                 marker.remove();
                                 markers.remove(key);
-                                /*if (marker1 != null) {
-                                    marker1.remove();
-                                    markers1.remove(key);
-                                    Toast.makeText(MapsActivity.this, "key remove" + key, Toast.LENGTH_SHORT).show();
-                                }*/
                             }
-                            Toast.makeText(MapsActivity.this, "key remove"+key, Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onKeyMoved(String key, GeoLocation location) {
@@ -145,7 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
-    public void destination(String key1){
+    public void destination(){
         Toast.makeText(MapsActivity.this, "Error Occured"+latitude, Toast.LENGTH_SHORT).show();
         mDatabase= FirebaseDatabase.getInstance().getReference().child("Users").child("Destination");
         final GeoFire geoFire1 = new GeoFire(mDatabase);
@@ -168,17 +162,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                         @Override
                         public void onKeyExited(String key) {
-                            Marker marker = markers1.get(key);
-                            if (marker != null) {
-                                marker.remove();
+                            Marker marker1 = markers1.get(key);
+                            Marker marker=markers.get(key);
+                            if (marker1 != null) {
+                                marker1.remove();
                                 markers1.remove(key);
+                                if(marker!=null){
+                                    marker.remove();
+                                    markers.remove(key);
+                                }
                             }
                             Toast.makeText(MapsActivity.this, "key left the place", Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onKeyMoved(String key, GeoLocation location) {
-                            Marker marker = markers.get(key);
-                            if (marker != null) {
+                            Marker marker1 = markers1.get(key);
+                            if (marker1 != null) {
                             }
                             Toast.makeText(MapsActivity.this, "key moved but here", Toast.LENGTH_SHORT).show();
                         }

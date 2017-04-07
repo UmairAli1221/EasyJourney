@@ -138,6 +138,7 @@ public class NavBar extends AppCompatActivity
             // Handle the my account action
             fragmentManager.beginTransaction().replace(R.id.content_frame,new AccountFragment()).commit();
         } else if (id == R.id.nav_new_Travell) {
+            //android.support.v4.app.FragmentManager fragmentManage=getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame,new newtravelFragment()).commit();
 
         } else if (id == R.id.nav_history) {

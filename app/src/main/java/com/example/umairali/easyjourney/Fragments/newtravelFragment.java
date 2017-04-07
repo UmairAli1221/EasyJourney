@@ -60,16 +60,47 @@ public class newtravelFragment extends Fragment {
             startActivity(intent);
         } else {
             mUserId = mFirebaseUser.getUid();
-        btn.setOnClickListener(new View.OnClickListener() {
+            btn.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                startPoint();
-            }
-        });
+                @Override
+                public void onClick(View v) {
+                    startPoint();
+                }
+            });
         }
         return myView;
     }
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+               // showDatePicker();
+            }
+        });}
+
+   /* private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
+    }
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            date.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
+                    + "-" + String.valueOf(year));
+        }
+    };*/
+
     private void startPoint() {
         Startpoint = (EditText) myView.findViewById(R.id.spoint);
         final String Startaddress = Startpoint.getText().toString();
@@ -127,4 +158,30 @@ public class newtravelFragment extends Fragment {
             e.printStackTrace();
         }
     }
+   /* public static class DatePickerFragment extends DialogFragment {
+        DatePickerDialog.OnDateSetListener ondateSet;
+        private int year, month, day;
+
+        public DatePickerFragment() {}
+
+        public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
+            ondateSet = ondate;
+        }
+
+        @SuppressLint("NewApi")
+        @Override
+        public void setArguments(Bundle args) {
+            super.setArguments(args);
+            year = args.getInt("year");
+            month = args.getInt("month");
+            day = args.getInt("day");
+        }
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+             DatePickerDialog dialoge=new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+            long now = System.currentTimeMillis() - 1000;
+            dialoge.getDatePicker().setMinDate(now);
+            return dialoge;
+        }
+    }*/
 }
